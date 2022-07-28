@@ -21,7 +21,13 @@ The motivation for this project is to rewrite the script with the following main
 * Update code for Python 3 compatibility (while keeping Python 2 compatibility).
 
 
-## Additional Changes
+## Implementation
+
+The new implemetation is provided as [batch_upload_thumbnails_action.py](python_api/batch_upload_thumbnails_action.py).
+
+It is based on the "User Interface" example of the "[Actions](https://help.ftrack.com/en/articles/1040465-actions)" documentation page from the Ftrack Help website.
+
+### Additional Changes
 
 The main process had be modified due to some API changes.
 
@@ -32,13 +38,30 @@ Instead of getting the Ftrack entities from the image file names:
 * For each entity check if its Ftrack path ends with any image file name
 
 It allows image file names to be part of the Ftrack paths, instead of requiring the full path.
-
-E.g.: The name "char1.png" can be used, instead of the full path "assets.char.char1.png".
-
+> E.g.: The name "char1.png" can be used, instead of the full path "assets.char.char1.png".
 
 It also allows a thumbnail to be used by several entities.
+> E.g.: An image "model.png" could be used for every task named "model" in the project.
 
-E.g.: An image "model.png" could be used for every task named "model" in the project.
+### Alternative
+
+A different implementation is provided as [batch_upload_thumbnails_baseaction.py](python_api/batch_upload_thumbnails_baseaction.py).
+
+The process is identical, but the action is based on the "Base Action" class provided by the "[ftrack-action-handler](https://ftrack-action-handler.readthedocs.io)" module.
+The module is mentionned in the "Action Base Class" section of the "[Actions](https://help.ftrack.com/en/articles/1040465-actions)" documentation page.
+
+The class has its own [API reference page](http://ftrack-action-handler.rtd.ftrack.com/en/latest/api_reference/index.html?highlight=baseaction#baseaction).
+
+
+To use this implementation, it is thus required to have the module available.
+
+The module can be obtained in different ways:
+* From a PIP installation:
+    ```
+    pip install git+https://bitbucket.org/ftrack/ftrack-action-handler.git
+    ```
+* From [PyPI](https://pypi.org/project/ftrack-action-handler/)
+* From the [BitBucket source repository](https://bitbucket.org/ftrack/ftrack-action-handler/src/master/source/ftrack_action_handler)
 
 
 ## Reference

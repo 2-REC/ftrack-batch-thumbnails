@@ -12,20 +12,33 @@ For reference, the original script is provided in the "legacy" directory of this
 
 ### Motivation
 
-The latest code revision of the original project dates from December 2015.
-It uses the Ftrack Legacy API.
-As a consequence, it is also not compatible with Python 3.
+The latest code revision of the original project dates from December 2015:
+* Uses the "Ftrack Legacy API"
+* Is not compatible with Python 3
 
 The motivation for this project is to rewrite the script with the following main tasks:
-* Change from the "Legacy API" to the newer "Ftrack Python API"
-* Update usage of Python 2 to Python 3
+* Change from the "Legacy API" to the newer "Ftrack Python API".
+* Update code for Python 3 compatibility (while keeping Python 2 compatibility).
 
 
 ## Additional Changes
 
-**TODO:** Add changes.
-* Doesn't need the full entity path in image file names
-* ...
+The main process had be modified due to some API changes.
+
+Essentially, the ```getFromPath``` function has been removed from the Ftrack API.
+
+Instead of getting the Ftrack entities from the image file names:
+* Get all the children entities of the project
+* For each entity check if its Ftrack path ends with any image file name
+
+It allows image file names to be part of the Ftrack paths, instead of requiring the full path.
+
+E.g.: The name "char1.png" can be used, instead of the full path "assets.char.char1.png".
+
+
+It also allows a thumbnail to be used by several entities.
+
+E.g.: An image "model.png" could be used for every task named "model" in the project.
 
 
 ## Reference

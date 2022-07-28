@@ -29,11 +29,11 @@ It is based on the "User Interface" example of the "[Actions](https://help.ftrac
 
 ### Additional Changes
 
-The main process had be modified due to some API changes.
+The main process had to be modified due to some API changes.
 
 Essentially, the ```getFromPath``` function has been removed from the Ftrack API.
 
-Instead of getting the Ftrack entities from the image file names:
+As a result, instead of getting the Ftrack entities from the image file names:
 * Get all the children entities of the project
 * For each entity check if its Ftrack path ends with any image file name
 
